@@ -42,7 +42,7 @@ export default class App extends React.Component {
     }
   
     const cardToFlip = {...this.state.deck[cardIndex]}
-    const newPickedCards = this.state.pickedCards.concat(cardIndex)
+    let newPickedCards = this.state.pickedCards.concat(cardIndex)
     const newDeck = this.state.deck.map((card, index) => {
       if(cardIndex === index) {
         return cardToFlip;
@@ -56,7 +56,7 @@ export default class App extends React.Component {
       if(card1Index.symbol !== card2Index.symbol) {
         const firstCard = newDeck[card1Index];
         const secondCard = newDeck[card2Index];
-        // unflip cards
+        this.unflipCards(firstCard, secondCard);
       }
 
       newPickedCards = [];
