@@ -6,11 +6,14 @@ import MemoryCard from './components/MemoryCard';
   const symbols = ['∆','ß','£','§','•', '$', '+', 'ø'];
   const deck = [];
   
+  
   for (let i = 0; i < 16; i++) {
-    deck.push({
-    isFlipped: false,
+    const card = {
+    isFlipped : false,
     symbol: symbols[i % 8]
-  });
+    }
+    
+    deck.push(card);
   }
 
   shuffle(deck);
@@ -42,6 +45,7 @@ export default class App extends React.Component {
     }
   
     const cardToFlip = {...this.state.deck[cardIndex]}
+    cardToFlip.isFlipped = true;
     let newPickedCards = this.state.pickedCards.concat(cardIndex)
     const newDeck = this.state.deck.map((card, index) => {
       if(cardIndex === index) {
@@ -56,7 +60,7 @@ export default class App extends React.Component {
       if(card1Index.symbol !== card2Index.symbol) {
         const firstCard = newDeck[card1Index];
         const secondCard = newDeck[card2Index];
-        this.unflipCards(firstCard, secondCard);
+        setTimeout(this.unflipCards.bind(this, card1Index, card2Index), 1000);
       }
 
       newPickedCards = [];
@@ -73,6 +77,13 @@ export default class App extends React.Component {
     const card2 = {...this.state.deck[card2Index]};
     card1.isFlipped = false;
     card2.isFlipped = false;
+    // const newDeck = this.state.deck.map((card, index) => {
+    //   if(card1Index.symbol !== card2Index.symbol) {
+    //     card1.isFlipped = true;
+    //     card2.isFlipped = true;
+    //   }
+      
+    // })
 
   }
 

@@ -4,25 +4,25 @@ import '../MemoryCard.css'
 export default class MemoryCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isFlipped: false
-        };
+        // this.state = {
+        //     isFlipped: false
+        // };
 
         // this.clickHandler = this.clickHandler.bind(this);
     }
 
-   clickHandler = () => {
-       this.setState({isFlipped: !this.state.isFlipped});
+//    clickHandler = () => {
+//        this.setState({isFlipped: !this.state.isFlipped});
         
-    }
+//     }
 
     render() {
-        const memoryCardInnerClass = !this.state.isFlipped ? "MemoryCardInner" : "MemoryCardInner flipped";
+        const memoryCardInnerClass = !this.props.isFlipped ? "MemoryCardInner" : "MemoryCardInner flipped";
         
             return (
             <>
             <div>
-                <div className="MemoryCard" onClick={this.clickHandler}>
+                <div className="MemoryCard" onClick={this.props.pickCard}>
                     <div className={memoryCardInnerClass}>
                         <div className="MemoryCardBack">
                             <img src="https://www.digitalcrafts.com/img/digitalcrafts-logo-white-y.png"
