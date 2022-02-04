@@ -57,12 +57,12 @@ export default class App extends React.Component {
     if(newPickedCards.length === 2) {
       const card1Index = newPickedCards[0];
       const card2Index = newPickedCards[1];
-      if(card1Index !== card2Index) {
+      if(this.state.deck[card1Index].symbol !== this.state.deck[card2Index]) {
         const firstCard = newDeck[card1Index];
         const secondCard = newDeck[card2Index];
         setTimeout(this.unflipCards.bind(this, card1Index, card2Index), 1000);
         console.log('no match')
-      } 
+      } else { console.log('match') }
       newPickedCards = [];
     }
   
@@ -72,7 +72,7 @@ export default class App extends React.Component {
     });
   }
 
-  unflipCards = (card1Index, card2Index) => {
+  unflipCards(card1Index, card2Index) {
     const card1 = {...this.state.deck[card1Index]};
     const card2 = {...this.state.deck[card2Index]};
     card1.isFlipped = false;
